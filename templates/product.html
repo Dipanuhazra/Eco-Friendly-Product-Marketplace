@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">{{ product.name }}</h5>
+        <p class="card-text">{{ product.description }}</p>
+        <p class="card-text">${{ product.price }}</p>
+        {% if product.eco_friendly %}
+        <p class="card-text text-success">Eco-Friendly</p>
+        {% endif %}
+        {% if product.certification %}
+        <p class="card-text text-info">Certified: {{ product.certification.cert_name }} on {{ product.certification.cert_date }}</p>
+        {% endif %}
+        <h6>Reviews:</h6>
+        <ul>
+            {% for review in product.reviews %}
+            <li>{{ review.content }} - {{ review.author.username }} on {{ review.date_posted }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock %}
