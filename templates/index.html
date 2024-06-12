@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+    {% for product in products %}
+    <div class="col-md-4">
+        <div class="card mb-4 shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title">{{ product.name }}</h5>
+                <p class="card-text">{{ product.description }}</p>
+                <p class="card-text">${{ product.price }}</p>
+                {% if product.eco_friendly %}
+                <p class="card-text text-success">Eco-Friendly</p>
+                {% endif %}
+                <a href="{{ url_for('product_detail', product_id=product.id) }}" class="btn btn-primary">View Product</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
